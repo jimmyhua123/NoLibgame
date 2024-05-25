@@ -48,11 +48,13 @@ void mainMenu(PlayerManager& playerManager) {
                 }
                 break;
             case 5:
-                if (playerManager.hasCurrentPlayer()) {
-                    Game game;
-                    game.start();
-                } else {
-                    cout << "Please enter a Player ID before starting the game.\n";
+                {
+                    if (playerManager.getCurrentPlayerID().empty()) {
+                        cout << "Please enter a player ID first.\n";
+                    } else {
+                        Game game;
+                        game.start();
+                    }
                 }
                 break;
             case 6:

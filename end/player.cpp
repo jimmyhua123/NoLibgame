@@ -2,58 +2,63 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
-#include <vector>
+
+using namespace std;
 
 PlayerManager::PlayerManager() {
     loadPlayers();
 }
 
 void PlayerManager::addPlayer(const std::string& id) {
-    playerScores[id] = 0; // 初始化分數為0
-    setCurrentPlayerID(id);
-}
-
-void PlayerManager::deletePlayer(const std::string& id) {
-    playerScores.erase(id);
+    if (playerScores.find(id) == playerScores.end()) {
+        playerScores[id] = 0;
+        cout << "Player " << id << " added.\n";
+    } else {
+        cout << "Player " << id << " already exists.\n";
+    }
 }
 
 void PlayerManager::searchPlayer(const std::string& id) {
-    auto it = playerScores.find(id);
-    if (it != playerScores.end()) {
-        std::cout << "Player ID: " << it->first << ", Score: " << it->second << std::endl;
+    if (playerScores.find(id) != playerScores.end()) {
+        cout << "Player " << id << " found with score " << playerScores[id] << ".\n";
     } else {
-        std::cout << "Player ID not found.\n";
+        cout << "Player " << id << " not found.\n";
     }
 }
 
 void PlayerManager::printScoreRanking() {
-    std::vector<std::pair<std::string, int>> ranking(playerScores.begin(), playerScores.end());
-    std::sort(ranking.begin(), ranking.end(), [](const std::pair<std::string, int>& a, const std::pair<std::string, int>& b) {
-        return b.second < a.second; // 降序排序
+    vector<pair<string, int>> ranking(playerScores.begin(), playerScores.end());
+    sort(ranking.begin(), ranking.end(), [](const pair<string, int>& a, const pair<string, int>& b) {
+        return b.second < a.second;
     });
-    std::cout << "Score Ranking:\n";
+
+    cout << "Score Ranking:\n";
     for (const auto& it : ranking) {
-        std::cout << "Player ID: " << it.first << ", Score: " << it.second << std::endl;
+        cout << "Player ID: " << it.first << ", Score: " << it.second << endl;
+    }
+}
+
+void PlayerManager::deletePlayer(const std::string& id) {
+    if (playerScores.erase(id)) {
+        cout << "Player " << id << " deleted.\n";
+    } else {
+        cout << "Player " << id << " not found.\n";
     }
 }
 
 void PlayerManager::savePlayers() {
-    std::ofstream outFile("players.txt");
+    ofstream outFile("players.dat");
     for (const auto& it : playerScores) {
-        outFile << it.first << " " << it.second << std::endl;
+        outFile << it.first << " " << it.second << endl;
     }
-    outFile.close();
 }
 
 void PlayerManager::loadPlayers() {
-    std::ifstream inFile("players.txt");
-    if (inFile.is_open()) {
-        std::string id;
-        int score;
-        while (inFile >> id >> score) {
-            playerScores[id] = score;
-        }
-        inFile.close();
+    ifstream inFile("players.dat");
+    string id;
+    int score;
+    while (inFile >> id >> score) {
+        playerScores[id] = score;
     }
 }
 
@@ -61,6 +66,6 @@ void PlayerManager::setCurrentPlayerID(const std::string& id) {
     currentPlayerID = id;
 }
 
-bool PlayerManager::hasCurrentPlayer() const {
-    return !currentPlayerID.empty();
+std::string PlayerManager::getCurrentPlayerID() {
+    return currentPlayerID;
 }
