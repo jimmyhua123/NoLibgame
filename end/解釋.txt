@@ -1,0 +1,15 @@
+C:\VSCode\c\end\snakeNoLibraries
+    /include
+    ├── bufferedVector.h
+    ├── console.h
+    ├── font8x8_basic.h
+    ├── randomNumbers.h
+    ├── stringManipulation.h
+    ├── types.h
+    /sources
+    ├── console.cpp
+    ├── main.cpp
+    ├── mainRuntime.cpp
+    ├── randomNumbers.cpp
+    ├── stringManipulation.cpp
+CMakeLists.txt
