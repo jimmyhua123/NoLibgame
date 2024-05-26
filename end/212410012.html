@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>212410012.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<hr>
+<h1 id="%E9%81%8A%E6%88%B2%E5%B0%88%E6%A1%88%E7%8E%A9%E5%AE%B6%E7%AE%A1%E7%90%86%E7%B3%BB%E7%B5%B1%E8%88%87%E7%B0%A1%E5%96%AE%E5%B0%84%E6%93%8A%E9%81%8A%E6%88%B2">遊戲專案：玩家管理系統與簡單射擊遊戲</h1>
+<h2 id="%E5%B0%88%E6%A1%88%E4%BB%8B%E7%B4%B9">專案介紹</h2>
+<p>這個專案是一個簡單的控制台遊戲，包含玩家管理系統和遊戲功能。玩家管理系統允許玩家註冊、查詢、打印排名和刪除玩家；遊戲部分則包含了基本的遊戲邏輯，包括玩家移動、敵人移動和子彈處理。</p>
+<h2 id="%E4%BD%BF%E7%94%A8%E7%9A%84%E8%AA%B2%E7%A8%8B%E4%B8%BB%E9%A1%8C">使用的課程主題</h2>
+<ol>
+<li>
+<p><strong>內存動態分配</strong>：</p>
+<ul>
+<li>使用 <code>std::vector</code> 動態管理敵人和子彈的位置。</li>
+<li>使用 <code>std::map</code> 動態管理玩家及其得分。</li>
+</ul>
+</li>
+<li>
+<p><strong>文件處理</strong>：</p>
+<ul>
+<li>使用文件存儲和加載玩家信息，確保玩家信息在程序重新啟動後仍然存在。</li>
+</ul>
+</li>
+<li>
+<p><strong>數據結構</strong>：</p>
+<ul>
+<li>使用 <code>std::vector</code> 和 <code>std::map</code> 管理遊戲和玩家數據。</li>
+<li>使用 <code>std::pair</code> 存儲敵人和子彈的位置。</li>
+</ul>
+</li>
+<li>
+<p><strong>指針應用</strong>：</p>
+<ul>
+<li>使用引用傳遞 <code>PlayerManager</code> 對象，以便在不同函數之間共享數據。</li>
+</ul>
+</li>
+</ol>
+<h2 id="%E5%90%84%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%B4%B9">各功能介紹</h2>
+<h3 id="playermanager-%E9%A1%9E">PlayerManager 類</h3>
+<h4 id="%E6%88%90%E5%93%A1%E5%87%BD%E6%95%B8">成員函數</h4>
+<ul>
+<li><code>addPlayer(const std::string&amp; playerID)</code>：添加新玩家。</li>
+<li><code>deletePlayer(const std::string&amp; playerID)</code>：刪除玩家。</li>
+<li><code>searchPlayer(const std::string&amp; playerID)</code>：查詢玩家。</li>
+<li><code>printScoreRanking()</code>：打印玩家得分排名。</li>
+<li><code>savePlayers()</code>：將玩家信息保存到文件中。</li>
+<li><code>loadPlayers()</code>：從文件加載玩家信息。</li>
+<li><code>addPlayerScore(const std::string&amp; playerID, int score)</code>：增加玩家得分。</li>
+<li><code>setCurrentPlayerID(const std::string&amp; playerID)</code>：設置當前玩家ID。</li>
+<li><code>getCurrentPlayerID()</code>：獲取當前玩家ID。</li>
+</ul>
+<h3 id="game-%E9%A1%9E">Game 類</h3>
+<h4 id="%E6%88%90%E5%93%A1%E5%87%BD%E6%95%B8">成員函數</h4>
+<ul>
+<li><code>setup()</code>：初始化遊戲狀態。</li>
+<li><code>nextLevel()</code>：進入下一關。</li>
+<li><code>draw()</code>：繪製遊戲畫面。</li>
+<li><code>input()</code>：處理玩家輸入。</li>
+<li><code>logic()</code>：處理遊戲邏輯。</li>
+<li><code>start()</code>：開始遊戲，主遊戲循環。</li>
+</ul>
+<h3 id="%E4%B8%BB%E6%8E%A7%E4%BB%A3%E7%A2%BCmaincpp">主控代碼（<code>main.cpp</code>）</h3>
+<h4 id="%E4%B8%BB%E6%8E%A7%E5%87%BD%E6%95%B8">主控函數</h4>
+<ul>
+<li><code>main()</code>：程序入口，負責初始化 <code>PlayerManager</code> 並啟動主菜單。</li>
+<li><code>mainMenu(PlayerManager&amp; playerManager)</code>：主菜單函數，處理玩家管理和遊戲選擇。</li>
+</ul>
+<h2 id="%E9%81%8A%E6%88%B2%E8%AA%AA%E6%98%8E%E8%88%87%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%A9%9F">遊戲說明與操作步驟</h2>
+<h3 id="%E9%81%8A%E6%88%B2%E8%AA%AA%E6%98%8E">遊戲說明</h3>
+<p>本遊戲為簡單的射擊遊戲，玩家需要操控角色射擊敵人，並躲避敵人的攻擊。遊戲中，玩家只有一點血量，被敵人的子彈擊中一次即會 Game Over。遊戲包含多個關卡，每一關卡敵人的數量會逐漸增加，玩家需要不斷提升自己的技術來面對更高難度的挑戰。</p>
+<h3 id="%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%A9%9F">操作步驟</h3>
+<ol>
+<li>
+<p><strong>輸入玩家 ID</strong></p>
+<ul>
+<li>開啟遊戲後，玩家需要先輸入一個 ID 來記錄自己的遊戲進度與分數。</li>
+</ul>
+</li>
+<li>
+<p><strong>主選單操作</strong></p>
+<ul>
+<li>輸入 ID 後，玩家可以在主選單中選擇以下操作：
+<ol>
+<li><strong>Enter Player ID</strong>：輸入玩家 ID 來開始遊戲。</li>
+<li><strong>Search Player ID</strong>：查詢玩家 ID 是否已經存在。</li>
+<li><strong>Print Score Ranking</strong>：打印玩家的分數排行榜。</li>
+<li><strong>Delete Player ID</strong>：刪除已存在的玩家 ID。</li>
+<li><strong>Start the Game</strong>：開始遊戲。</li>
+<li><strong>Exit</strong>：退出遊戲。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>遊戲操作</strong></p>
+<ul>
+<li>使用鍵盤左右方向鍵 (<code>←</code> 和 <code>→</code>) 控制角色移動。</li>
+<li>使用空格鍵 (<code>Space</code>) 發射子彈攻擊敵人。</li>
+</ul>
+</li>
+<li>
+<p><strong>遊戲目標</strong></p>
+<ul>
+<li>擊敗所有敵人並避開敵人的子彈。每當擊中敵人時，玩家會獲得分數。當所有敵人被擊敗後，進入下一關卡，敵人的數量會增加，難度也會提高。</li>
+<li>若玩家被敵人的子彈擊中，遊戲結束，並顯示玩家的最終分數和等級。</li>
+</ul>
+</li>
+</ol>
+<h2 id="%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A2%BC">完整代碼</h2>
+<h3 id="maincpp"><code>main.cpp</code></h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"player.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"game.h"</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mainMenu</span><span class="hljs-params">(PlayerManager&amp; playerManager)</span> </span>{
+    <span class="hljs-keyword">int</span> choice;
+    <span class="hljs-keyword">do</span> {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\nPlayer Management System\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"1. Enter Player ID\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"2. Search Player ID\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"3. Print Score Ranking\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"4. Delete Player ID\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"5. Start the Game\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"6. Exit\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Please choose an operation: "</span>;
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n"</span>;  <span class="hljs-comment">// 添加空行</span>
+
+        <span class="hljs-built_in">cin</span> &gt;&gt; choice;
+        <span class="hljs-keyword">switch</span> (choice) {
+            <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+                {
+                    <span class="hljs-built_in">string</span> id;
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Enter Player ID: "</span>;
+                    <span class="hljs-built_in">cin</span> &gt;&gt; id;
+                    playerManager.addPlayer(id);
+                    playerManager.setCurrentPlayerID(id);
+                }
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+                {
+                    <span class="hljs-built_in">string</span> id;
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Enter Player ID to search: "</span>;
+                    <span class="hljs-built_in">cin</span> &gt;&gt; id;
+                    playerManager.searchPlayer(id);
+                }
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+                playerManager.printScoreRanking();
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
+                {
+                    <span class="hljs-built_in">string</span> id;
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Enter Player ID to delete: "</span>;
+                    <span class="hljs-built_in">cin</span> &gt;&gt; id;
+                    playerManager.deletePlayer(id);
+                }
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:
+                {
+                    <span class="hljs-keyword">if</span> (playerManager.getCurrentPlayerID().empty()) {
+                        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Please enter a Player ID first.\n"</span>;
+                    } <span class="hljs-keyword">else</span> {
+                        Game game(playerManager);
+                        game.start();
+                        <span class="hljs-comment">// 在遊戲結束後重新打印選單</span>
+                        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\nPlayer Management System\n"</span>;
+                        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"1. Enter Player ID\n"</span>;
+                        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"2. Search Player ID\n"</span>;
+                        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"3. Print Score Ranking\n"</span>;
+                        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"4. Delete Player ID\n"</span>;
+                        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"5. Start the Game\n"</span>;
+                        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"6. Exit\n"</span>;
+                        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Please choose an operation: "</span>;
+                        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n"</span>;  <span class="hljs-comment">// 添加空行</span>
+                    }
+                }
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:
+                playerManager.savePlayers();
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">default</span>:
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Invalid choice. Please try again.\n"</span>;
+        }
+    } <span class="hljs-keyword">while</span> (choice != <span class="hljs-number">6</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    PlayerManager playerManager;
+    playerManager.loadPlayers();
+    mainMenu(playerManager);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="playerh"><code>player.h</code></h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> PLAYER_H</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PLAYER_H</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fstream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;map&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PlayerManager</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">addPlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">deletePlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">searchPlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printScoreRanking</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">savePlayers</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loadPlayers</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">addPlayerScore</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID, <span class="hljs-keyword">int</span> score)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setCurrentPlayerID</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span></span>;
+    <span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">getCurrentPlayerID</span><span class="hljs-params">()</span></span>;
+
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt; playerScores;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> currentPlayerID;
+};
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+</div></code></pre>
+<h3 id="playercpp"><code>player.cpp</code></h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"player.h"</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::addPlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span> </span>{
+    <span class="hljs-keyword">if</span> (playerScores.find(playerID) == playerScores.end()) {
+        playerScores[playerID] = <span class="hljs-number">0</span>;
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player "</span> &lt;&lt; playerID &lt;&lt; <span class="hljs-string">" added.\n"</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player "</span> &lt;&lt; playerID &lt;&lt; <span class="hljs-string">" already exists.\n"</span>;
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::deletePlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span> </span>{
+    <span class="hljs-keyword">auto</span> it = playerScores.find(playerID);
+    <span class="hljs-keyword">if</span> (it != playerScores.end()) {
+        playerScores.erase(it);
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player "</span> &lt;&lt; playerID &lt;&lt; <span class="hljs-string">" deleted.\n"</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player "</span> &lt;&lt; playerID &lt;&lt; <span class="hljs-string">" not found.\n"</span>;
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::searchPlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span> </span>{
+    <span class="hljs-keyword">auto</span> it = playerScores.find(playerID);
+    <span class="hljs-keyword">if</span> (it != playerScores.end()) {
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player ID: "</span> &lt;&lt; playerID &lt;&lt; <span class="hljs-string">", Score: "</span> &lt;&lt; it-&gt;second &lt;&lt; <span class="hljs-string">"\n"</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player "</span> &lt;&lt; playerID &lt;&lt; <span class="hljs-string">" not found.\n"</span>;
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::printScoreRanking</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-title">ranking</span><span class="hljs-params">(playerScores.begin(), playerScores.end())</span></span>;
+    <span class="hljs-built_in">std</span>::sort(ranking.begin(), ranking.end(), [](<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt;&amp; a, <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt;&amp; b) {
+        <span class="hljs-keyword">return</span> a.second &gt; b.second;
+    });
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; it : ranking) {
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player ID: "</span> &lt;&lt; it.first &lt;&lt; <span class="hljs-string">", Score: "</span> &lt;&lt; it.second &lt;&lt; <span class="hljs-string">"\n"</span>;
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::savePlayers</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-function"><span class="hljs-built_in">std</span>::ofstream <span class="hljs-title">file</span><span class="hljs-params">(<span class="hljs-string">"players.txt"</span>)</span></span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; it : playerScores) {
+        file &lt;&lt; it.first &lt;&lt; <span class="hljs-string">" "</span> &lt;&lt; it.second &lt;&lt; <span class="hljs-string">"\n"</span>;
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::loadPlayers</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-function"><span class="hljs-built_in">std</span>::ifstream <span class="hljs-title">file</span><span class="hljs-params">(<span class="hljs-string">"players.txt"</span>)</span></span>;
+    <span class="hljs-keyword">if</span> (file.is_open()) {
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> playerID;
+        <span class="hljs-keyword">int</span> score;
+        <span class="hljs-keyword">while</span> (file &gt;&gt; playerID &gt;&gt; score) {
+            playerScores[playerID] = score;
+        }
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::addPlayerScore</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID, <span class="hljs-keyword">int</span> score)</span> </span>{
+    playerScores[playerID] += score;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::setCurrentPlayerID</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span> </span>{
+    currentPlayerID = playerID;
+}
+
+<span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">PlayerManager::getCurrentPlayerID</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> currentPlayerID;
+}
+</div></code></pre>
+<h3 id="gameh"><code>game.h</code></h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> GAME_H</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> GAME_H</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;utility&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"player.h"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Game</span> {</span>
+<span class="hljs-keyword">public</span>:
+    Game(PlayerManager&amp; pm);
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">nextLevel</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">draw</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">input</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">logic</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">start</span><span class="hljs-params">()</span></span>;
+
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-keyword">int</span> playerX;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; enemies;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; bullets;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; enemyBullets;
+    <span class="hljs-keyword">bool</span> gameOver;
+    <span class="hljs-keyword">int</span> score;
+    <span class="hljs-keyword">int</span> level;
+    PlayerManager&amp; playerManager;
+
+
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> width = <span class="hljs-number">30</span>;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> height = <span class="hljs-number">20</span>;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> player = <span class="hljs-string">'^'</span>;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> enemy = <span class="hljs-string">'@'</span>;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> bullet = <span class="hljs-string">'|'</span>;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> enemyBullet = <span class="hljs-string">'!'</span>;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> border = <span class="hljs-string">'#'</span>;
+};
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+</div></code></pre>
+<h3 id="gamecpp"><code>game.cpp</code></h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"game.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;conio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;windows.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sstream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdlib&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;ctime&gt;</span></span>
+
+Game::Game(PlayerManager&amp; pm) : playerManager(pm) {}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Game::setup</span><span class="hljs-params">()</span> </span>{
+    srand(time(<span class="hljs-number">0</span>));
+    gameOver = <span class="hljs-literal">false</span>;
+    playerX = width / <span class="hljs-number">2</span>;
+    score = <span class="hljs-number">0</span>;
+    level = <span class="hljs-number">1</span>;
+    enemies.clear();
+    bullets.clear();
+    enemyBullets.clear();
+
+    <span class="hljs-comment">// 初始化敵人</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; ++i) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; width; j += <span class="hljs-number">5</span>) {
+            enemies.push_back({i, j});
+        }
+    }
+
+    <span class="hljs-comment">// 設置控制台游標隱藏</span>
+    CONSOLE_CURSOR_INFO cursorInfo;
+    GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursorInfo);
+    cursorInfo.bVisible = <span class="hljs-literal">false</span>; <span class="hljs-comment">// 設置游標不可見</span>
+    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursorInfo);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Game::nextLevel</span><span class="hljs-params">()</span> </span>{
+    level++;
+    enemies.clear();
+    bullets.clear();
+    enemyBullets.clear();
+
+    <span class="hljs-comment">// 增加敵人的數量</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span> + level; ++i) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; width; j += <span class="hljs-number">5</span>) {
+            enemies.push_back({i, j});
+        }
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Game::draw</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">ostringstream</span> oss;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; width + <span class="hljs-number">2</span>; i++) oss &lt;&lt; border;
+    oss &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; height; i++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; width; j++) {
+            <span class="hljs-keyword">if</span> (j == <span class="hljs-number">0</span>) oss &lt;&lt; border;
+
+            <span class="hljs-keyword">bool</span> drawn = <span class="hljs-literal">false</span>;
+
+            <span class="hljs-comment">// 畫敵人</span>
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> &amp;enemyPos : enemies) {
+                <span class="hljs-keyword">if</span> (enemyPos.first == i &amp;&amp; enemyPos.second == j) {
+                    oss &lt;&lt; enemy;
+                    drawn = <span class="hljs-literal">true</span>;
+                    <span class="hljs-keyword">break</span>;
+                }
+            }
+
+            <span class="hljs-comment">// 畫玩家子彈</span>
+            <span class="hljs-keyword">if</span> (!drawn) {
+                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> &amp;bulletPos : bullets) {
+                    <span class="hljs-keyword">if</span> (bulletPos.first == i &amp;&amp; bulletPos.second == j) {
+                        oss &lt;&lt; bullet;
+                        drawn = <span class="hljs-literal">true</span>;
+                        <span class="hljs-keyword">break</span>;
+                    }
+                }
+            }
+
+            <span class="hljs-comment">// 畫敵人子彈</span>
+            <span class="hljs-keyword">if</span> (!drawn) {
+                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> &amp;enemyBulletPos : enemyBullets) {
+                    <span class="hljs-keyword">if</span> (enemyBulletPos.first == i &amp;&amp; enemyBulletPos.second == j) {
+                        oss &lt;&lt; enemyBullet;
+                        drawn = <span class="hljs-literal">true</span>;
+                        <span class="hljs-keyword">break</span>;
+                    }
+                }
+            }
+
+            <span class="hljs-comment">// 畫玩家</span>
+            <span class="hljs-keyword">if</span> (!drawn &amp;&amp; i == height - <span class="hljs-number">1</span> &amp;&amp; j == playerX) {
+                oss &lt;&lt; player;
+                drawn = <span class="hljs-literal">true</span>;
+            }
+
+            <span class="hljs-keyword">if</span> (!drawn) oss &lt;&lt; <span class="hljs-string">' '</span>;
+
+            <span class="hljs-keyword">if</span> (j == width - <span class="hljs-number">1</span>) oss &lt;&lt; border;
+        }
+        oss &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+    }
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; width + <span class="hljs-number">2</span>; i++) oss &lt;&lt; border;
+    oss &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+
+    oss &lt;&lt; <span class="hljs-string">"Score: "</span> &lt;&lt; score &lt;&lt; <span class="hljs-string">"  Level: "</span> &lt;&lt; level &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-comment">// 移動光標到頂端並輸出畫面</span>
+    COORD coord = {<span class="hljs-number">0</span>, <span class="hljs-number">0</span>};
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; oss.str();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Game::input</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (_kbhit()) {
+        <span class="hljs-keyword">char</span> key = _getch();
+        <span class="hljs-keyword">if</span> (key == <span class="hljs-number">-32</span>) { <span class="hljs-comment">// special key (like arrow keys)</span>
+            key = _getch(); <span class="hljs-comment">// get the actual key code</span>
+        }
+        <span class="hljs-keyword">switch</span> (key) {
+            <span class="hljs-keyword">case</span> <span class="hljs-number">75</span>: <span class="hljs-comment">// 左箭頭</span>
+                <span class="hljs-keyword">if</span> (playerX &gt; <span class="hljs-number">0</span>) playerX -= <span class="hljs-number">1</span>; <span class="hljs-comment">// 每次按鍵移動一個位置</span>
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">77</span>: <span class="hljs-comment">// 右箭頭</span>
+                <span class="hljs-keyword">if</span> (playerX &lt; width - <span class="hljs-number">1</span>) playerX += <span class="hljs-number">1</span>; <span class="hljs-comment">// 每次按鍵移動一個位置</span>
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">32</span>: <span class="hljs-comment">// 空格鍵發射子彈</span>
+                bullets.push_back({height - <span class="hljs-number">2</span>, playerX});
+                <span class="hljs-keyword">break</span>;
+        }
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Game::logic</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// 更新玩家子彈位置</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;bulletPos : bullets) {
+        bulletPos.first--;
+    }
+
+    <span class="hljs-comment">// 移除越界的玩家子彈</span>
+    bullets.erase(<span class="hljs-built_in">std</span>::remove_if(bullets.begin(), bullets.end(),
+                            [<span class="hljs-keyword">this</span>](<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; &amp;bulletPos) {
+                                <span class="hljs-keyword">return</span> bulletPos.first &lt; <span class="hljs-number">0</span>;
+                            }),
+                  bullets.end());
+
+    <span class="hljs-comment">// 檢查玩家子彈是否擊中敵人</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> bulletIt = bullets.begin(); bulletIt != bullets.end();) {
+        <span class="hljs-keyword">bool</span> hit = <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> enemyIt = enemies.begin(); enemyIt != enemies.end();) {
+            <span class="hljs-keyword">if</span> (bulletIt-&gt;first == enemyIt-&gt;first &amp;&amp; bulletIt-&gt;second == enemyIt-&gt;second) {
+                score++;
+                enemyIt = enemies.erase(enemyIt);
+                hit = <span class="hljs-literal">true</span>;
+                <span class="hljs-keyword">break</span>;
+            } <span class="hljs-keyword">else</span> {
+                ++enemyIt;
+            }
+        }
+        <span class="hljs-keyword">if</span> (hit) {
+            bulletIt = bullets.erase(bulletIt);
+        } <span class="hljs-keyword">else</span> {
+            ++bulletIt;
+        }
+    }
+
+    <span class="hljs-comment">// 更新敵人子彈位置</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;enemyBulletPos : enemyBullets) {
+        enemyBulletPos.first++;
+    }
+
+    <span class="hljs-comment">// 移除越界的敵人子彈</span>
+    enemyBullets.erase(<span class="hljs-built_in">std</span>::remove_if(enemyBullets.begin(), enemyBullets.end(),
+                                 [<span class="hljs-keyword">this</span>](<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; &amp;enemyBulletPos) {
+                                     <span class="hljs-keyword">return</span> enemyBulletPos.first &gt;= height;
+                                 }),
+                       enemyBullets.end());
+
+    <span class="hljs-comment">// 檢查敵人子彈是否擊中玩家</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> &amp;enemyBulletPos : enemyBullets) {
+        <span class="hljs-keyword">if</span> (enemyBulletPos.first == height - <span class="hljs-number">1</span> &amp;&amp; enemyBulletPos.second == playerX) {
+            gameOver = <span class="hljs-literal">true</span>;
+        }
+    }
+
+    <span class="hljs-comment">// 隨機生成敵人子彈</span>
+    <span class="hljs-keyword">if</span> (rand() % <span class="hljs-number">10</span> &lt; level) { <span class="hljs-comment">// 隨機概率隨等級增加</span>
+        <span class="hljs-keyword">if</span> (!enemies.empty()) {
+            <span class="hljs-keyword">int</span> randomEnemy = rand() % enemies.size();
+            enemyBullets.push_back({enemies[randomEnemy].first + <span class="hljs-number">1</span>, enemies[randomEnemy].second});
+        }
+    }
+
+    <span class="hljs-comment">// 如果所有敵人都被擊敗，則進入下一關</span>
+    <span class="hljs-keyword">if</span> (enemies.empty() &amp;&amp; !gameOver) {
+        nextLevel();
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Game::start</span><span class="hljs-params">()</span> </span>{
+    setup();
+    <span class="hljs-keyword">while</span> (!gameOver) {
+        draw();
+        input();
+        logic();
+        Sleep(<span class="hljs-number">100</span>); <span class="hljs-comment">// 調整FPS和遊戲速度</span>
+    }
+
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Game Over! Your score is: "</span> &lt;&lt; score &lt;&lt; <span class="hljs-string">"  Level: "</span> &lt;&lt; level &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-comment">// 恢復控制台游標可見</span>
+    CONSOLE_CURSOR_INFO cursorInfo;
+    GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursorInfo);
+    cursorInfo.bVisible = <span class="hljs-literal">true</span>;
+    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursorInfo);
+
+    playerManager.addPlayerScore(playerManager.getCurrentPlayerID(), score);
+}
+</div></code></pre>
+
+</body>
+</html>
