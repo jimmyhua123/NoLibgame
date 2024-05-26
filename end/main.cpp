@@ -50,10 +50,19 @@ void mainMenu(PlayerManager& playerManager) {
             case 5:
                 {
                     if (playerManager.getCurrentPlayerID().empty()) {
-                        cout << "Please enter a player ID first.\n";
+                        cout << "Please enter a Player ID first.\n";
                     } else {
-                        Game game;
+                        Game game(playerManager);
                         game.start();
+                        // 在遊戲結束後重新打印選單
+                        cout << "\nPlayer Management System\n";
+                        cout << "1. Enter Player ID\n";
+                        cout << "2. Search Player ID\n";
+                        cout << "3. Print Score Ranking\n";
+                        cout << "4. Delete Player ID\n";
+                        cout << "5. Start the Game\n";
+                        cout << "6. Exit\n";
+                        cout << "Please choose an operation: ";
                     }
                 }
                 break;
@@ -68,6 +77,7 @@ void mainMenu(PlayerManager& playerManager) {
 
 int main() {
     PlayerManager playerManager;
+    playerManager.loadPlayers();
     mainMenu(playerManager);
     return 0;
 }
