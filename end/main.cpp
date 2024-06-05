@@ -1,12 +1,14 @@
-#include <iostream>
-#include "player.h"
-#include "game.h"
+#include <iostream> // ¥]§tiostream¼ÐÀYÀÉ¡A¥Î©ó¿é¤J¿é¥X
+#include "player.h" // ¥]§tplayer.h¼ÐÀYÀÉ¡A©w¸qPlayerManagerÃþ
+#include "game.h" // ¥]§tgame.h¼ÐÀYÀÉ¡A©w¸qGameÃþ
 
-using namespace std;
+using namespace std; // ¨Ï¥Î¼Ð·Ç©R¦WªÅ¶¡
 
+// ©w¸q¥Dµæ³æ¨ç¼Æ¡A¥Î©óª±®aºÞ²z©M±Ò°Ê¹CÀ¸
 void mainMenu(PlayerManager& playerManager) {
-    int choice;
+    int choice; // ¥Î©ó¦sÀx¥Î¤á¿ï¾Ü
     do {
+        // Åã¥Üµæ³æ¿ï¶µ
         cout << "\nPlayer Management System\n";
         cout << "1. Enter Player ID\n";
         cout << "2. Search Player ID\n";
@@ -15,46 +17,46 @@ void mainMenu(PlayerManager& playerManager) {
         cout << "5. Start the Game\n";
         cout << "6. Exit\n";
         cout << "Please choose an operation: ";
-        std::cout << "\n";  // æ·»åŠ ç©ºè¡Œ
+        std::cout << "\n";  // ´«¦æ
 
-        cin >> choice;
-        switch (choice) {
-            case 1:
+        cin >> choice; // Àò¨ú¥Î¤á¿é¤J
+        switch (choice) { // ®Ú¾Ú¥Î¤á¿é¤J°õ¦æ¹ïÀ³¾Þ§@
+            case 1: // ¿ï¶µ1¡G¿é¤Jª±®aID
                 {
-                    string id;
+                    string id; // ¥Î©ó¦sÀxª±®aID
                     cout << "Enter Player ID: ";
-                    cin >> id;
-                    playerManager.addPlayer(id);
-                    playerManager.setCurrentPlayerID(id);
+                    cin >> id; // Àò¨úª±®aID
+                    playerManager.addPlayer(id); // ²K¥[ª±®a
+                    playerManager.setCurrentPlayerID(id); // ³]¸m·í«eª±®aID
                 }
                 break;
-            case 2:
+            case 2: // ¿ï¶µ2¡G·j¯Áª±®aID
                 {
-                    string id;
+                    string id; // ¥Î©ó¦sÀx­n·j¯Áªºª±®aID
                     cout << "Enter Player ID to search: ";
-                    cin >> id;
-                    playerManager.searchPlayer(id);
+                    cin >> id; // Àò¨ú­n·j¯Áªºª±®aID
+                    playerManager.searchPlayer(id); // ·j¯Áª±®a
                 }
                 break;
-            case 3:
-                playerManager.printScoreRanking();
+            case 3: // ¿ï¶µ3¡G¥´¦L¤À¼Æ±Æ¦W
+                playerManager.printScoreRanking(); // ¥´¦L¤À¼Æ±Æ¦W
                 break;
-            case 4:
+            case 4: // ¿ï¶µ4¡G§R°£ª±®aID
                 {
-                    string id;
+                    string id; // ¥Î©ó¦sÀx­n§R°£ªºª±®aID
                     cout << "Enter Player ID to delete: ";
-                    cin >> id;
-                    playerManager.deletePlayer(id);
+                    cin >> id; // Àò¨ú­n§R°£ªºª±®aID
+                    playerManager.deletePlayer(id); // §R°£ª±®a
                 }
                 break;
-            case 5:
+            case 5: // ¿ï¶µ5¡G¶}©l¹CÀ¸
                 {
-                    if (playerManager.getCurrentPlayerID().empty()) {
-                        cout << "Please enter a Player ID first.\n";
+                    if (playerManager.getCurrentPlayerID().empty()) { // ¦pªG¨S¦³³]¸m·í«eª±®aID
+                        cout << "Please enter a Player ID first.\n"; // ´£¥Ü¥Î¤á¥ý¿é¤Jª±®aID
                     } else {
-                        Game game(playerManager);
-                        game.start();
-                        // åœ¨éŠæˆ²çµæŸå¾Œé‡æ–°æ‰“å°é¸å–®
+                        Game game(playerManager); // ³Ð«ØGame¹ï¶H
+                        game.start(); // ¶}©l¹CÀ¸
+                        // ¹CÀ¸µ²§ô«áÅã¥Üµæ³æ¿ï¶µ
                         cout << "\nPlayer Management System\n";
                         cout << "1. Enter Player ID\n";
                         cout << "2. Search Player ID\n";
@@ -66,18 +68,18 @@ void mainMenu(PlayerManager& playerManager) {
                     }
                 }
                 break;
-            case 6:
-                playerManager.savePlayers();
+            case 6: // ¿ï¶µ6¡G°h¥X
+                playerManager.savePlayers(); // «O¦sª±®a¼Æ¾Ú
                 break;
-            default:
-                cout << "Invalid choice. Please try again.\n";
+            default: // «Dªk¿ï¶µ
+                cout << "Invalid choice. Please try again.\n"; // ´£¥Ü¥Î¤á­«·s¿ï¾Ü
         }
-    } while (choice != 6);
+    } while (choice != 6); // ·í¥Î¤á¿ï¾Ü°h¥X®É¡A°h¥X´`Àô
 }
 
 int main() {
-    PlayerManager playerManager;
-    playerManager.loadPlayers();
-    mainMenu(playerManager);
-    return 0;
+    PlayerManager playerManager; // ³Ð«ØPlayerManager¹ï¶H
+    playerManager.loadPlayers(); // ¥[¸üª±®a¼Æ¾Ú
+    mainMenu(playerManager); // Åã¥Ü¥Dµæ³æ
+    return 0; // ªð¦^0¡Aªí¥Üµ{§Ç¥¿±`µ²§ô
 }

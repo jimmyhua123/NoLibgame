@@ -471,15 +471,17 @@ code {
 </ol>
 <h2 id="%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A2%BC">完整代碼</h2>
 <h3 id="maincpp"><code>main.cpp</code></h3>
-<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"player.h"</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"game.h"</span></span>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt; // 包含iostream標頭檔，用於輸入輸出</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"player.h"</span> <span class="hljs-comment">// 包含player.h標頭檔，定義PlayerManager類</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"game.h"</span> <span class="hljs-comment">// 包含game.h標頭檔，定義Game類</span></span>
 
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>; <span class="hljs-comment">// 使用標準命名空間</span>
 
+<span class="hljs-comment">// 定義主菜單函數，用於玩家管理和啟動遊戲</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mainMenu</span><span class="hljs-params">(PlayerManager&amp; playerManager)</span> </span>{
-    <span class="hljs-keyword">int</span> choice;
+    <span class="hljs-keyword">int</span> choice; <span class="hljs-comment">// 用於存儲用戶選擇</span>
     <span class="hljs-keyword">do</span> {
+        <span class="hljs-comment">// 顯示菜單選項</span>
         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\nPlayer Management System\n"</span>;
         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"1. Enter Player ID\n"</span>;
         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"2. Search Player ID\n"</span>;
@@ -488,46 +490,46 @@ code {
         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"5. Start the Game\n"</span>;
         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"6. Exit\n"</span>;
         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Please choose an operation: "</span>;
-        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n"</span>;  <span class="hljs-comment">// 添加空行</span>
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n"</span>;  <span class="hljs-comment">// 換行</span>
 
-        <span class="hljs-built_in">cin</span> &gt;&gt; choice;
-        <span class="hljs-keyword">switch</span> (choice) {
-            <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+        <span class="hljs-built_in">cin</span> &gt;&gt; choice; <span class="hljs-comment">// 獲取用戶輸入</span>
+        <span class="hljs-keyword">switch</span> (choice) { <span class="hljs-comment">// 根據用戶輸入執行對應操作</span>
+            <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-comment">// 選項1：輸入玩家ID</span>
                 {
-                    <span class="hljs-built_in">string</span> id;
+                    <span class="hljs-built_in">string</span> id; <span class="hljs-comment">// 用於存儲玩家ID</span>
                     <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Enter Player ID: "</span>;
-                    <span class="hljs-built_in">cin</span> &gt;&gt; id;
-                    playerManager.addPlayer(id);
-                    playerManager.setCurrentPlayerID(id);
+                    <span class="hljs-built_in">cin</span> &gt;&gt; id; <span class="hljs-comment">// 獲取玩家ID</span>
+                    playerManager.addPlayer(id); <span class="hljs-comment">// 添加玩家</span>
+                    playerManager.setCurrentPlayerID(id); <span class="hljs-comment">// 設置當前玩家ID</span>
                 }
                 <span class="hljs-keyword">break</span>;
-            <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+            <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: <span class="hljs-comment">// 選項2：搜索玩家ID</span>
                 {
-                    <span class="hljs-built_in">string</span> id;
+                    <span class="hljs-built_in">string</span> id; <span class="hljs-comment">// 用於存儲要搜索的玩家ID</span>
                     <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Enter Player ID to search: "</span>;
-                    <span class="hljs-built_in">cin</span> &gt;&gt; id;
-                    playerManager.searchPlayer(id);
+                    <span class="hljs-built_in">cin</span> &gt;&gt; id; <span class="hljs-comment">// 獲取要搜索的玩家ID</span>
+                    playerManager.searchPlayer(id); <span class="hljs-comment">// 搜索玩家</span>
                 }
                 <span class="hljs-keyword">break</span>;
-            <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
-                playerManager.printScoreRanking();
+            <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>: <span class="hljs-comment">// 選項3：打印分數排名</span>
+                playerManager.printScoreRanking(); <span class="hljs-comment">// 打印分數排名</span>
                 <span class="hljs-keyword">break</span>;
-            <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
+            <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>: <span class="hljs-comment">// 選項4：刪除玩家ID</span>
                 {
-                    <span class="hljs-built_in">string</span> id;
+                    <span class="hljs-built_in">string</span> id; <span class="hljs-comment">// 用於存儲要刪除的玩家ID</span>
                     <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Enter Player ID to delete: "</span>;
-                    <span class="hljs-built_in">cin</span> &gt;&gt; id;
-                    playerManager.deletePlayer(id);
+                    <span class="hljs-built_in">cin</span> &gt;&gt; id; <span class="hljs-comment">// 獲取要刪除的玩家ID</span>
+                    playerManager.deletePlayer(id); <span class="hljs-comment">// 刪除玩家</span>
                 }
                 <span class="hljs-keyword">break</span>;
-            <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:
+            <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>: <span class="hljs-comment">// 選項5：開始遊戲</span>
                 {
-                    <span class="hljs-keyword">if</span> (playerManager.getCurrentPlayerID().empty()) {
-                        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Please enter a Player ID first.\n"</span>;
+                    <span class="hljs-keyword">if</span> (playerManager.getCurrentPlayerID().empty()) { <span class="hljs-comment">// 如果沒有設置當前玩家ID</span>
+                        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Please enter a Player ID first.\n"</span>; <span class="hljs-comment">// 提示用戶先輸入玩家ID</span>
                     } <span class="hljs-keyword">else</span> {
-                        Game game(playerManager);
-                        game.start();
-                        <span class="hljs-comment">// 在遊戲結束後重新打印選單</span>
+                        Game game(playerManager); <span class="hljs-comment">// 創建Game對象</span>
+                        game.start(); <span class="hljs-comment">// 開始遊戲</span>
+                        <span class="hljs-comment">// 遊戲結束後顯示菜單選項</span>
                         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\nPlayer Management System\n"</span>;
                         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"1. Enter Player ID\n"</span>;
                         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"2. Search Player ID\n"</span>;
@@ -536,387 +538,427 @@ code {
                         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"5. Start the Game\n"</span>;
                         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"6. Exit\n"</span>;
                         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Please choose an operation: "</span>;
-                        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n"</span>;  <span class="hljs-comment">// 添加空行</span>
                     }
                 }
                 <span class="hljs-keyword">break</span>;
-            <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:
-                playerManager.savePlayers();
+            <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>: <span class="hljs-comment">// 選項6：退出</span>
+                playerManager.savePlayers(); <span class="hljs-comment">// 保存玩家數據</span>
                 <span class="hljs-keyword">break</span>;
-            <span class="hljs-keyword">default</span>:
-                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Invalid choice. Please try again.\n"</span>;
+            <span class="hljs-keyword">default</span>: <span class="hljs-comment">// 非法選項</span>
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Invalid choice. Please try again.\n"</span>; <span class="hljs-comment">// 提示用戶重新選擇</span>
         }
-    } <span class="hljs-keyword">while</span> (choice != <span class="hljs-number">6</span>);
+    } <span class="hljs-keyword">while</span> (choice != <span class="hljs-number">6</span>); <span class="hljs-comment">// 當用戶選擇退出時，退出循環</span>
 }
 
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-    PlayerManager playerManager;
-    playerManager.loadPlayers();
-    mainMenu(playerManager);
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    PlayerManager playerManager; <span class="hljs-comment">// 創建PlayerManager對象</span>
+    playerManager.loadPlayers(); <span class="hljs-comment">// 加載玩家數據</span>
+    mainMenu(playerManager); <span class="hljs-comment">// 顯示主菜單</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <span class="hljs-comment">// 返回0，表示程序正常結束</span>
 }
+
 </div></code></pre>
 <h3 id="playerh"><code>player.h</code></h3>
-<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> PLAYER_H</span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PLAYER_H</span>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> PLAYER_H <span class="hljs-comment">// 防止重複包含標頭檔案</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PLAYER_H <span class="hljs-comment">// 定義PLAYER_H宏</span></span>
 
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fstream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;map&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt; // 包含string標頭檔，用於字符串操作</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;unordered_map&gt; // 包含unordered_map標頭檔，用於哈希映射</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fstream&gt; // 包含fstream標頭檔，用於文件操作</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt; // 包含vector標頭檔，用於動態數組</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt; // 包含algorithm標頭檔，用於標準算法</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt; // 包含iostream標頭檔，用於輸入輸出</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;utility&gt; // 包含utility標頭檔，用於std::pair</span></span>
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PlayerManager</span> {</span>
-<span class="hljs-keyword">public</span>:
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">addPlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span></span>;
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">deletePlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span></span>;
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">searchPlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span></span>;
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printScoreRanking</span><span class="hljs-params">()</span></span>;
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">savePlayers</span><span class="hljs-params">()</span></span>;
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loadPlayers</span><span class="hljs-params">()</span></span>;
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">addPlayerScore</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID, <span class="hljs-keyword">int</span> score)</span></span>;
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setCurrentPlayerID</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span></span>;
-    <span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">getCurrentPlayerID</span><span class="hljs-params">()</span></span>;
-
 <span class="hljs-keyword">private</span>:
-    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt; playerScores;
-    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> currentPlayerID;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">unordered_map</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt; playerScores; <span class="hljs-comment">// 存儲玩家ID和分數的哈希映射</span>
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> currentPlayerID; <span class="hljs-comment">// 當前玩家的ID</span>
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">addPlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; id)</span></span>; <span class="hljs-comment">// 添加玩家ID</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">deletePlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; id)</span></span>; <span class="hljs-comment">// 刪除玩家ID</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">searchPlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; id)</span></span>; <span class="hljs-comment">// 搜索玩家ID</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printScoreRanking</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 打印分數排名</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">savePlayers</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 保存玩家數據到文件</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loadPlayers</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 從文件加載玩家數據</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setCurrentPlayerID</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; id)</span></span>; <span class="hljs-comment">// 設置當前玩家ID</span>
+    <span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">getCurrentPlayerID</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 獲取當前玩家ID</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">addPlayerScore</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; id, <span class="hljs-keyword">int</span> score)</span></span>; <span class="hljs-comment">// 添加玩家分數</span>
 };
 
-<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">// 結束PLAYER_H的條件編譯</span></span>
+
 </div></code></pre>
 <h3 id="playercpp"><code>player.cpp</code></h3>
-<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"player.h"</span></span>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"player.h"</span> <span class="hljs-comment">// 包含player.h標頭檔案，定義PlayerManager類</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt; // 包含iostream標頭檔，用於輸入輸出</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt; // 包含algorithm標頭檔，用於標準算法</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt; // 包含vector標頭檔，用於動態數組</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fstream&gt; // 包含fstream標頭檔，用於文件輸入輸出</span></span>
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::addPlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span> </span>{
-    <span class="hljs-keyword">if</span> (playerScores.find(playerID) == playerScores.end()) {
-        playerScores[playerID] = <span class="hljs-number">0</span>;
-        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player "</span> &lt;&lt; playerID &lt;&lt; <span class="hljs-string">" added.\n"</span>;
+<span class="hljs-comment">// 添加一個新的玩家ID</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::addPlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; id)</span> </span>{
+    <span class="hljs-keyword">if</span> (playerScores.find(id) == playerScores.end()) { <span class="hljs-comment">// 檢查玩家ID是否已存在</span>
+        playerScores[id] = <span class="hljs-number">0</span>; <span class="hljs-comment">// 如果不存在，添加玩家並設置初始分數為0</span>
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player "</span> &lt;&lt; id &lt;&lt; <span class="hljs-string">" added.\n"</span>; <span class="hljs-comment">// 輸出玩家已添加的信息</span>
     } <span class="hljs-keyword">else</span> {
-        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player "</span> &lt;&lt; playerID &lt;&lt; <span class="hljs-string">" already exists.\n"</span>;
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player "</span> &lt;&lt; id &lt;&lt; <span class="hljs-string">" already exists.\n"</span>; <span class="hljs-comment">// 如果玩家已存在，輸出提示信息</span>
     }
 }
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::deletePlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span> </span>{
-    <span class="hljs-keyword">auto</span> it = playerScores.find(playerID);
-    <span class="hljs-keyword">if</span> (it != playerScores.end()) {
-        playerScores.erase(it);
-        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player "</span> &lt;&lt; playerID &lt;&lt; <span class="hljs-string">" deleted.\n"</span>;
+<span class="hljs-comment">// 刪除指定的玩家ID</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::deletePlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; id)</span> </span>{
+    <span class="hljs-keyword">if</span> (playerScores.erase(id)) { <span class="hljs-comment">// 刪除玩家，如果成功返回true</span>
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player "</span> &lt;&lt; id &lt;&lt; <span class="hljs-string">" deleted.\n"</span>; <span class="hljs-comment">// 輸出玩家已刪除的信息</span>
     } <span class="hljs-keyword">else</span> {
-        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player "</span> &lt;&lt; playerID &lt;&lt; <span class="hljs-string">" not found.\n"</span>;
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player "</span> &lt;&lt; id &lt;&lt; <span class="hljs-string">" not found.\n"</span>; <span class="hljs-comment">// 如果玩家未找到，輸出提示信息</span>
     }
 }
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::searchPlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span> </span>{
-    <span class="hljs-keyword">auto</span> it = playerScores.find(playerID);
-    <span class="hljs-keyword">if</span> (it != playerScores.end()) {
-        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player ID: "</span> &lt;&lt; playerID &lt;&lt; <span class="hljs-string">", Score: "</span> &lt;&lt; it-&gt;second &lt;&lt; <span class="hljs-string">"\n"</span>;
+<span class="hljs-comment">// 搜索並顯示指定的玩家ID及其分數</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::searchPlayer</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; id)</span> </span>{
+    <span class="hljs-keyword">auto</span> it = playerScores.find(id); <span class="hljs-comment">// 查找玩家ID</span>
+    <span class="hljs-keyword">if</span> (it != playerScores.end()) { <span class="hljs-comment">// 如果找到玩家</span>
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player ID: "</span> &lt;&lt; it-&gt;first &lt;&lt; <span class="hljs-string">", Score: "</span> &lt;&lt; it-&gt;second &lt;&lt; <span class="hljs-string">"\n"</span>; <span class="hljs-comment">// 顯示玩家ID和分數</span>
     } <span class="hljs-keyword">else</span> {
-        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player "</span> &lt;&lt; playerID &lt;&lt; <span class="hljs-string">" not found.\n"</span>;
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player "</span> &lt;&lt; id &lt;&lt; <span class="hljs-string">" not found.\n"</span>; <span class="hljs-comment">// 如果未找到玩家，輸出提示信息</span>
     }
 }
 
+<span class="hljs-comment">// 打印所有玩家的分數排名</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::printScoreRanking</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-title">ranking</span><span class="hljs-params">(playerScores.begin(), playerScores.end())</span></span>;
+    <span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-title">ranking</span><span class="hljs-params">(playerScores.begin(), playerScores.end())</span></span>; <span class="hljs-comment">// 創建一個包含所有玩家ID和分數的向量</span>
     <span class="hljs-built_in">std</span>::sort(ranking.begin(), ranking.end(), [](<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt;&amp; a, <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-keyword">int</span>&gt;&amp; b) {
-        <span class="hljs-keyword">return</span> a.second &gt; b.second;
+        <span class="hljs-keyword">return</span> a.second &gt; b.second; <span class="hljs-comment">// 按照分數從高到低排序</span>
     });
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; it : ranking) {
-        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player ID: "</span> &lt;&lt; it.first &lt;&lt; <span class="hljs-string">", Score: "</span> &lt;&lt; it.second &lt;&lt; <span class="hljs-string">"\n"</span>;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; it : ranking) { <span class="hljs-comment">// 遍歷排序後的向量</span>
+        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Player ID: "</span> &lt;&lt; it.first &lt;&lt; <span class="hljs-string">", Score: "</span> &lt;&lt; it.second &lt;&lt; <span class="hljs-string">"\n"</span>; <span class="hljs-comment">// 顯示玩家ID和分數</span>
     }
 }
 
+<span class="hljs-comment">// 保存所有玩家數據到文件</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::savePlayers</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-function"><span class="hljs-built_in">std</span>::ofstream <span class="hljs-title">file</span><span class="hljs-params">(<span class="hljs-string">"players.txt"</span>)</span></span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; it : playerScores) {
-        file &lt;&lt; it.first &lt;&lt; <span class="hljs-string">" "</span> &lt;&lt; it.second &lt;&lt; <span class="hljs-string">"\n"</span>;
+    <span class="hljs-function"><span class="hljs-built_in">std</span>::ofstream <span class="hljs-title">ofs</span><span class="hljs-params">(<span class="hljs-string">"players.dat"</span>)</span></span>; <span class="hljs-comment">// 打開文件進行寫操作</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; pair : playerScores) { <span class="hljs-comment">// 遍歷所有玩家</span>
+        ofs &lt;&lt; pair.first &lt;&lt; <span class="hljs-string">" "</span> &lt;&lt; pair.second &lt;&lt; <span class="hljs-string">"\n"</span>; <span class="hljs-comment">// 將玩家ID和分數寫入文件</span>
     }
 }
 
+<span class="hljs-comment">// 從文件中加載玩家數據</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::loadPlayers</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-function"><span class="hljs-built_in">std</span>::ifstream <span class="hljs-title">file</span><span class="hljs-params">(<span class="hljs-string">"players.txt"</span>)</span></span>;
-    <span class="hljs-keyword">if</span> (file.is_open()) {
-        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> playerID;
-        <span class="hljs-keyword">int</span> score;
-        <span class="hljs-keyword">while</span> (file &gt;&gt; playerID &gt;&gt; score) {
-            playerScores[playerID] = score;
-        }
+    <span class="hljs-function"><span class="hljs-built_in">std</span>::ifstream <span class="hljs-title">ifs</span><span class="hljs-params">(<span class="hljs-string">"players.dat"</span>)</span></span>; <span class="hljs-comment">// 打開文件進行讀操作</span>
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> id; <span class="hljs-comment">// 用於存儲讀取的玩家ID</span>
+    <span class="hljs-keyword">int</span> score; <span class="hljs-comment">// 用於存儲讀取的分數</span>
+    <span class="hljs-keyword">while</span> (ifs &gt;&gt; id &gt;&gt; score) { <span class="hljs-comment">// 逐行讀取玩家ID和分數</span>
+        playerScores[id] = score; <span class="hljs-comment">// 將讀取的玩家數據存入map</span>
     }
 }
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::addPlayerScore</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID, <span class="hljs-keyword">int</span> score)</span> </span>{
-    playerScores[playerID] += score;
+<span class="hljs-comment">// 設置當前玩家ID</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::setCurrentPlayerID</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; id)</span> </span>{
+    currentPlayerID = id; <span class="hljs-comment">// 設置當前玩家ID</span>
 }
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::setCurrentPlayerID</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; playerID)</span> </span>{
-    currentPlayerID = playerID;
-}
-
+<span class="hljs-comment">// 獲取當前玩家ID</span>
 <span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">PlayerManager::getCurrentPlayerID</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">return</span> currentPlayerID;
+    <span class="hljs-keyword">return</span> currentPlayerID; <span class="hljs-comment">// 返回當前玩家ID</span>
 }
+
+<span class="hljs-comment">// 為指定玩家添加分數</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">PlayerManager::addPlayerScore</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; id, <span class="hljs-keyword">int</span> score)</span> </span>{
+    <span class="hljs-keyword">if</span> (playerScores.find(id) != playerScores.end()) { <span class="hljs-comment">// 檢查玩家是否存在</span>
+        playerScores[id] += score; <span class="hljs-comment">// 添加分數</span>
+    }
+}
+
 </div></code></pre>
 <h3 id="gameh"><code>game.h</code></h3>
-<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> GAME_H</span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> GAME_H</span>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> GAME_H <span class="hljs-comment">// 防止重複包含標頭檔案</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> GAME_H <span class="hljs-comment">// 定義標頭檔案宏</span></span>
 
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;utility&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"player.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt; // 包含iostream標頭檔，用於輸出</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt; // 包含vector標頭檔，用於動態數組</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;utility&gt; // 包含utility標頭檔，用於std::pair</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;ctime&gt; // 包含ctime標頭檔，用於時間相關函數</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;conio.h&gt; // 包含conio.h，用於非阻塞式鍵盤輸入</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;windows.h&gt; // 包含windows.h，用於Windows API</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sstream&gt; // 包含sstream標頭檔，用於字符串流</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PlayerManager</span>;</span> <span class="hljs-comment">// 前向宣告PlayerManager類</span>
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Game</span> {</span>
 <span class="hljs-keyword">public</span>:
-    Game(PlayerManager&amp; pm);
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>;
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">nextLevel</span><span class="hljs-params">()</span></span>;
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">draw</span><span class="hljs-params">()</span></span>;
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">input</span><span class="hljs-params">()</span></span>;
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">logic</span><span class="hljs-params">()</span></span>;
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">start</span><span class="hljs-params">()</span></span>;
-
+    Game(PlayerManager&amp; pm); <span class="hljs-comment">// Game類的構造函數</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 設置遊戲</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">nextLevel</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 進入下一級</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">draw</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 繪製遊戲界面</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">input</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 處理玩家輸入</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">logic</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 更新遊戲邏輯</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">start</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 開始遊戲</span>
 <span class="hljs-keyword">private</span>:
-    <span class="hljs-keyword">int</span> playerX;
-    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; enemies;
-    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; bullets;
-    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; enemyBullets;
-    <span class="hljs-keyword">bool</span> gameOver;
-    <span class="hljs-keyword">int</span> score;
-    <span class="hljs-keyword">int</span> level;
-    PlayerManager&amp; playerManager;
-
-
-    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> width = <span class="hljs-number">30</span>;
-    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> height = <span class="hljs-number">20</span>;
-    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> player = <span class="hljs-string">'^'</span>;
-    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> enemy = <span class="hljs-string">'@'</span>;
-    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> bullet = <span class="hljs-string">'|'</span>;
-    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> enemyBullet = <span class="hljs-string">'!'</span>;
-    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> border = <span class="hljs-string">'#'</span>;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> width = <span class="hljs-number">30</span>; <span class="hljs-comment">// 遊戲區域寬度</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> height = <span class="hljs-number">20</span>; <span class="hljs-comment">// 遊戲區域高度</span>
+    <span class="hljs-keyword">char</span> player = <span class="hljs-string">'^'</span>; <span class="hljs-comment">// 玩家符號</span>
+    <span class="hljs-keyword">char</span> enemy = <span class="hljs-string">'@'</span>; <span class="hljs-comment">// 敵人符號</span>
+    <span class="hljs-keyword">char</span> bullet = <span class="hljs-string">'|'</span>; <span class="hljs-comment">// 子彈符號</span>
+    <span class="hljs-keyword">char</span> enemyBullet = <span class="hljs-string">'!'</span>; <span class="hljs-comment">// 敵方子彈符號</span>
+    <span class="hljs-keyword">char</span> border = <span class="hljs-string">'#'</span>; <span class="hljs-comment">// 邊界符號</span>
+    <span class="hljs-keyword">int</span> playerX; <span class="hljs-comment">// 玩家位置</span>
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; enemies; <span class="hljs-comment">// 敵人位置列表</span>
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; bullets; <span class="hljs-comment">// 子彈位置列表</span>
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; enemyBullets; <span class="hljs-comment">// 敵方子彈位置列表</span>
+    <span class="hljs-keyword">bool</span> gameOver; <span class="hljs-comment">// 遊戲結束標誌</span>
+    <span class="hljs-keyword">int</span> score; <span class="hljs-comment">// 分數</span>
+    <span class="hljs-keyword">int</span> level; <span class="hljs-comment">// 等級</span>
+    PlayerManager&amp; playerManager; <span class="hljs-comment">// PlayerManager的引用</span>
 };
 
-<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">// 結束GAME_H的條件編譯</span></span>
+
 </div></code></pre>
 <h3 id="gamecpp"><code>game.cpp</code></h3>
-<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"game.h"</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;conio.h&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;windows.h&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sstream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdlib&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;ctime&gt;</span></span>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"game.h"</span> <span class="hljs-comment">// 包含game.h頭文件，定義Game類</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"player.h"</span> <span class="hljs-comment">// 包含player.h頭文件，定義PlayerManager類</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt; // 包含iostream標頭檔，用於輸出</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;conio.h&gt; // 包含conio.h，用於非阻塞式鍵盤輸入</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;windows.h&gt; // 包含windows.h，用於Windows API</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt; // 包含vector標頭檔，用於動態數組</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sstream&gt; // 包含sstream標頭檔，用於字符串流</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt; // 包含algorithm標頭檔，用於標準算法</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdlib&gt; // 包含cstdlib標頭檔，用於標準庫函數</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;ctime&gt; // 包含ctime標頭檔，用於時間相關函數</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>; <span class="hljs-comment">// 使用標準命名空間</span>
 
+<span class="hljs-comment">// Game類的構造函數，初始化PlayerManager的引用</span>
 Game::Game(PlayerManager&amp; pm) : playerManager(pm) {}
 
+<span class="hljs-comment">// setup()函數，用於初始化遊戲狀態</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Game::setup</span><span class="hljs-params">()</span> </span>{
-    srand(time(<span class="hljs-number">0</span>));
-    gameOver = <span class="hljs-literal">false</span>;
-    playerX = width / <span class="hljs-number">2</span>;
-    score = <span class="hljs-number">0</span>;
-    level = <span class="hljs-number">1</span>;
-    enemies.clear();
-    bullets.clear();
-    enemyBullets.clear();
+    srand(time(<span class="hljs-number">0</span>)); <span class="hljs-comment">// 設置隨機數生成器的種子</span>
+    gameOver = <span class="hljs-literal">false</span>; <span class="hljs-comment">// 初始化遊戲結束標誌</span>
+    playerX = width / <span class="hljs-number">2</span>; <span class="hljs-comment">// 將玩家位置設置在屏幕中間</span>
+    score = <span class="hljs-number">0</span>; <span class="hljs-comment">// 初始化分數</span>
+    level = <span class="hljs-number">1</span>; <span class="hljs-comment">// 初始化等級</span>
+    enemies.clear(); <span class="hljs-comment">// 清空敵人列表</span>
+    bullets.clear(); <span class="hljs-comment">// 清空子彈列表</span>
+    enemyBullets.clear(); <span class="hljs-comment">// 清空敵方子彈列表</span>
 
-    <span class="hljs-comment">// 初始化敵人</span>
+    <span class="hljs-comment">// 初始化敵人位置</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; ++i) {
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; width; j += <span class="hljs-number">5</span>) {
-            enemies.push_back({i, j});
+            enemies.push_back({i, j}); <span class="hljs-comment">// 添加敵人到敵人列表</span>
         }
     }
 
-    <span class="hljs-comment">// 設置控制台游標隱藏</span>
-    CONSOLE_CURSOR_INFO cursorInfo;
-    GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursorInfo);
-    cursorInfo.bVisible = <span class="hljs-literal">false</span>; <span class="hljs-comment">// 設置游標不可見</span>
-    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursorInfo);
+    <span class="hljs-comment">// 隱藏控制台光標</span>
+    CONSOLE_CURSOR_INFO cursorInfo; 
+    GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursorInfo); <span class="hljs-comment">// 獲取控制台光標信息</span>
+    cursorInfo.bVisible = <span class="hljs-literal">false</span>; <span class="hljs-comment">// 設置光標不可見</span>
+    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursorInfo); <span class="hljs-comment">// 更新控制台光標信息</span>
 }
 
+<span class="hljs-comment">// nextLevel()函數，用於進入下一級</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Game::nextLevel</span><span class="hljs-params">()</span> </span>{
-    level++;
-    enemies.clear();
-    bullets.clear();
-    enemyBullets.clear();
+    level++; <span class="hljs-comment">// 增加等級</span>
+    enemies.clear(); <span class="hljs-comment">// 清空敵人列表</span>
+    bullets.clear(); <span class="hljs-comment">// 清空子彈列表</span>
+    enemyBullets.clear(); <span class="hljs-comment">// 清空敵方子彈列表</span>
 
-    <span class="hljs-comment">// 增加敵人的數量</span>
+    <span class="hljs-comment">// 初始化新的敵人位置，根據等級增加敵人數量</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span> + level; ++i) {
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; width; j += <span class="hljs-number">5</span>) {
-            enemies.push_back({i, j});
+            enemies.push_back({i, j}); <span class="hljs-comment">// 添加敵人到敵人列表</span>
         }
     }
 }
 
+<span class="hljs-comment">// draw()函數，用於繪製遊戲界面</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Game::draw</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">ostringstream</span> oss;
+    <span class="hljs-built_in">ostringstream</span> oss; <span class="hljs-comment">// 創建字符串流對象</span>
 
+    <span class="hljs-comment">// 繪製頂部邊界</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; width + <span class="hljs-number">2</span>; i++) oss &lt;&lt; border;
-    oss &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+    oss &lt;&lt; <span class="hljs-built_in">endl</span>;
 
+    <span class="hljs-comment">// 繪製遊戲區域</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; height; i++) {
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; width; j++) {
-            <span class="hljs-keyword">if</span> (j == <span class="hljs-number">0</span>) oss &lt;&lt; border;
+            <span class="hljs-keyword">if</span> (j == <span class="hljs-number">0</span>) oss &lt;&lt; border; <span class="hljs-comment">// 繪製左邊邊界</span>
 
-            <span class="hljs-keyword">bool</span> drawn = <span class="hljs-literal">false</span>;
+            <span class="hljs-keyword">bool</span> drawn = <span class="hljs-literal">false</span>; <span class="hljs-comment">// 用於標記當前位置是否已繪製</span>
 
-            <span class="hljs-comment">// 畫敵人</span>
+            <span class="hljs-comment">// 繪製敵人</span>
             <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> &amp;enemyPos : enemies) {
                 <span class="hljs-keyword">if</span> (enemyPos.first == i &amp;&amp; enemyPos.second == j) {
-                    oss &lt;&lt; enemy;
-                    drawn = <span class="hljs-literal">true</span>;
-                    <span class="hljs-keyword">break</span>;
+                    oss &lt;&lt; enemy; <span class="hljs-comment">// 如果當前位置有敵人，繪製敵人</span>
+                    drawn = <span class="hljs-literal">true</span>; <span class="hljs-comment">// 標記已繪製</span>
+                    <span class="hljs-keyword">break</span>; <span class="hljs-comment">// 跳出循環</span>
                 }
             }
 
-            <span class="hljs-comment">// 畫玩家子彈</span>
+            <span class="hljs-comment">// 如果當前位置沒有敵人，繪製子彈</span>
             <span class="hljs-keyword">if</span> (!drawn) {
                 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> &amp;bulletPos : bullets) {
                     <span class="hljs-keyword">if</span> (bulletPos.first == i &amp;&amp; bulletPos.second == j) {
-                        oss &lt;&lt; bullet;
-                        drawn = <span class="hljs-literal">true</span>;
-                        <span class="hljs-keyword">break</span>;
+                        oss &lt;&lt; bullet; <span class="hljs-comment">// 如果當前位置有子彈，繪製子彈</span>
+                        drawn = <span class="hljs-literal">true</span>; <span class="hljs-comment">// 標記已繪製</span>
+                        <span class="hljs-keyword">break</span>; <span class="hljs-comment">// 跳出循環</span>
                     }
                 }
             }
 
-            <span class="hljs-comment">// 畫敵人子彈</span>
+            <span class="hljs-comment">// 如果當前位置沒有敵人和子彈，繪製敵方子彈</span>
             <span class="hljs-keyword">if</span> (!drawn) {
                 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> &amp;enemyBulletPos : enemyBullets) {
                     <span class="hljs-keyword">if</span> (enemyBulletPos.first == i &amp;&amp; enemyBulletPos.second == j) {
-                        oss &lt;&lt; enemyBullet;
-                        drawn = <span class="hljs-literal">true</span>;
-                        <span class="hljs-keyword">break</span>;
+                        oss &lt;&lt; enemyBullet; <span class="hljs-comment">// 如果當前位置有敵方子彈，繪製敵方子彈</span>
+                        drawn = <span class="hljs-literal">true</span>; <span class="hljs-comment">// 標記已繪製</span>
+                        <span class="hljs-keyword">break</span>; <span class="hljs-comment">// 跳出循環</span>
                     }
                 }
             }
 
-            <span class="hljs-comment">// 畫玩家</span>
+            <span class="hljs-comment">// 如果當前位置沒有敵人、子彈和敵方子彈，繪製玩家</span>
             <span class="hljs-keyword">if</span> (!drawn &amp;&amp; i == height - <span class="hljs-number">1</span> &amp;&amp; j == playerX) {
-                oss &lt;&lt; player;
-                drawn = <span class="hljs-literal">true</span>;
+                oss &lt;&lt; player; <span class="hljs-comment">// 如果當前位置是玩家，繪製玩家</span>
+                drawn = <span class="hljs-literal">true</span>; <span class="hljs-comment">// 標記已繪製</span>
             }
 
+            <span class="hljs-comment">// 如果當前位置什麼都沒有，繪製空格</span>
             <span class="hljs-keyword">if</span> (!drawn) oss &lt;&lt; <span class="hljs-string">' '</span>;
 
+            <span class="hljs-comment">// 繪製右邊邊界</span>
             <span class="hljs-keyword">if</span> (j == width - <span class="hljs-number">1</span>) oss &lt;&lt; border;
         }
-        oss &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+        oss &lt;&lt; <span class="hljs-built_in">endl</span>; <span class="hljs-comment">// 換行</span>
     }
 
+    <span class="hljs-comment">// 繪製底部邊界</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; width + <span class="hljs-number">2</span>; i++) oss &lt;&lt; border;
-    oss &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+    oss &lt;&lt; <span class="hljs-built_in">endl</span>;
 
-    oss &lt;&lt; <span class="hljs-string">"Score: "</span> &lt;&lt; score &lt;&lt; <span class="hljs-string">"  Level: "</span> &lt;&lt; level &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+    <span class="hljs-comment">// 繪製分數和等級信息</span>
+    oss &lt;&lt; <span class="hljs-string">"Score: "</span> &lt;&lt; score &lt;&lt; <span class="hljs-string">"  Level: "</span> &lt;&lt; level &lt;&lt; <span class="hljs-built_in">endl</span>;
 
-    <span class="hljs-comment">// 移動光標到頂端並輸出畫面</span>
+    <span class="hljs-comment">// 將光標位置設置為(0, 0)，以便更新整個控制台內容</span>
     COORD coord = {<span class="hljs-number">0</span>, <span class="hljs-number">0</span>};
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; oss.str();
+    <span class="hljs-built_in">cout</span> &lt;&lt; oss.str(); <span class="hljs-comment">// 輸出字符串流中的內容</span>
 }
 
+<span class="hljs-comment">// input()函數，用於處理玩家輸入</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Game::input</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">if</span> (_kbhit()) {
-        <span class="hljs-keyword">char</span> key = _getch();
-        <span class="hljs-keyword">if</span> (key == <span class="hljs-number">-32</span>) { <span class="hljs-comment">// special key (like arrow keys)</span>
-            key = _getch(); <span class="hljs-comment">// get the actual key code</span>
+    <span class="hljs-keyword">if</span> (_kbhit()) { <span class="hljs-comment">// 如果有鍵盤輸入</span>
+        <span class="hljs-keyword">char</span> key = _getch(); <span class="hljs-comment">// 獲取按鍵</span>
+        <span class="hljs-keyword">if</span> (key == <span class="hljs-number">-32</span>) { <span class="hljs-comment">// 如果是特殊按鍵，繼續讀取</span>
+            key = _getch();
         }
         <span class="hljs-keyword">switch</span> (key) {
-            <span class="hljs-keyword">case</span> <span class="hljs-number">75</span>: <span class="hljs-comment">// 左箭頭</span>
-                <span class="hljs-keyword">if</span> (playerX &gt; <span class="hljs-number">0</span>) playerX -= <span class="hljs-number">1</span>; <span class="hljs-comment">// 每次按鍵移動一個位置</span>
+            <span class="hljs-keyword">case</span> <span class="hljs-number">75</span>: <span class="hljs-comment">// 左箭頭鍵</span>
+                <span class="hljs-keyword">if</span> (playerX &gt; <span class="hljs-number">0</span>) playerX -= <span class="hljs-number">1</span>; <span class="hljs-comment">// 移動玩家到左邊</span>
                 <span class="hljs-keyword">break</span>;
-            <span class="hljs-keyword">case</span> <span class="hljs-number">77</span>: <span class="hljs-comment">// 右箭頭</span>
-                <span class="hljs-keyword">if</span> (playerX &lt; width - <span class="hljs-number">1</span>) playerX += <span class="hljs-number">1</span>; <span class="hljs-comment">// 每次按鍵移動一個位置</span>
+            <span class="hljs-keyword">case</span> <span class="hljs-number">77</span>: <span class="hljs-comment">// 右箭頭鍵</span>
+                <span class="hljs-keyword">if</span> (playerX &lt; width - <span class="hljs-number">1</span>) playerX += <span class="hljs-number">1</span>; <span class="hljs-comment">// 移動玩家到右邊</span>
                 <span class="hljs-keyword">break</span>;
-            <span class="hljs-keyword">case</span> <span class="hljs-number">32</span>: <span class="hljs-comment">// 空格鍵發射子彈</span>
-                bullets.push_back({height - <span class="hljs-number">2</span>, playerX});
+            <span class="hljs-keyword">case</span> <span class="hljs-number">32</span>: <span class="hljs-comment">// 空格鍵</span>
+                bullets.push_back({height - <span class="hljs-number">2</span>, playerX}); <span class="hljs-comment">// 發射子彈</span>
                 <span class="hljs-keyword">break</span>;
         }
     }
 }
 
+<span class="hljs-comment">// logic()函數，用於更新遊戲邏輯</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Game::logic</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-comment">// 更新玩家子彈位置</span>
+    <span class="hljs-comment">// 更新子彈位置</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;bulletPos : bullets) {
-        bulletPos.first--;
+        bulletPos.first--; <span class="hljs-comment">// 子彈向上移動</span>
     }
 
-    <span class="hljs-comment">// 移除越界的玩家子彈</span>
-    bullets.erase(<span class="hljs-built_in">std</span>::remove_if(bullets.begin(), bullets.end(),
-                            [<span class="hljs-keyword">this</span>](<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; &amp;bulletPos) {
-                                <span class="hljs-keyword">return</span> bulletPos.first &lt; <span class="hljs-number">0</span>;
-                            }),
-                  bullets.end());
+    <span class="hljs-comment">// 刪除屏幕外的子彈</span>
+    bullets.erase(remove_if(bullets.begin(), bullets.end(),
+        [<span class="hljs-keyword">this</span>](<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; &amp;bulletPos) {
+            <span class="hljs-keyword">return</span> bulletPos.first &lt; <span class="hljs-number">0</span>; <span class="hljs-comment">// 如果子彈超出屏幕上邊界，刪除</span>
+        }),
+        bullets.end());
 
-    <span class="hljs-comment">// 檢查玩家子彈是否擊中敵人</span>
+    <span class="hljs-comment">// 檢測子彈與敵人的碰撞</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> bulletIt = bullets.begin(); bulletIt != bullets.end();) {
-        <span class="hljs-keyword">bool</span> hit = <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">bool</span> hit = <span class="hljs-literal">false</span>; <span class="hljs-comment">// 紀錄是否有擊中敵人</span>
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> enemyIt = enemies.begin(); enemyIt != enemies.end();) {
             <span class="hljs-keyword">if</span> (bulletIt-&gt;first == enemyIt-&gt;first &amp;&amp; bulletIt-&gt;second == enemyIt-&gt;second) {
-                score++;
-                enemyIt = enemies.erase(enemyIt);
-                hit = <span class="hljs-literal">true</span>;
-                <span class="hljs-keyword">break</span>;
+                score++; <span class="hljs-comment">// 增加分數</span>
+                enemyIt = enemies.erase(enemyIt); <span class="hljs-comment">// 刪除被擊中的敵人</span>
+                hit = <span class="hljs-literal">true</span>; <span class="hljs-comment">// 標記為擊中</span>
+                <span class="hljs-keyword">break</span>; <span class="hljs-comment">// 跳出內循環</span>
             } <span class="hljs-keyword">else</span> {
-                ++enemyIt;
+                ++enemyIt; <span class="hljs-comment">// 否則，繼續檢查下一個敵人</span>
             }
         }
         <span class="hljs-keyword">if</span> (hit) {
-            bulletIt = bullets.erase(bulletIt);
+            bulletIt = bullets.erase(bulletIt); <span class="hljs-comment">// 刪除擊中敵人的子彈</span>
         } <span class="hljs-keyword">else</span> {
-            ++bulletIt;
+            ++bulletIt; <span class="hljs-comment">// 否則，檢查下一顆子彈</span>
         }
     }
 
-    <span class="hljs-comment">// 更新敵人子彈位置</span>
+    <span class="hljs-comment">// 更新敵方子彈位置</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;enemyBulletPos : enemyBullets) {
-        enemyBulletPos.first++;
+        enemyBulletPos.first++; <span class="hljs-comment">// 敵方子彈向下移動</span>
     }
 
-    <span class="hljs-comment">// 移除越界的敵人子彈</span>
-    enemyBullets.erase(<span class="hljs-built_in">std</span>::remove_if(enemyBullets.begin(), enemyBullets.end(),
-                                 [<span class="hljs-keyword">this</span>](<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; &amp;enemyBulletPos) {
-                                     <span class="hljs-keyword">return</span> enemyBulletPos.first &gt;= height;
-                                 }),
-                       enemyBullets.end());
+    <span class="hljs-comment">// 刪除屏幕外的敵方子彈</span>
+    enemyBullets.erase(remove_if(enemyBullets.begin(), enemyBullets.end(),
+        [<span class="hljs-keyword">this</span>](<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; &amp;enemyBulletPos) {
+            <span class="hljs-keyword">return</span> enemyBulletPos.first &gt;= height; <span class="hljs-comment">// 如果敵方子彈超出屏幕下邊界，刪除</span>
+        }),
+        enemyBullets.end());
 
-    <span class="hljs-comment">// 檢查敵人子彈是否擊中玩家</span>
+    <span class="hljs-comment">// 檢測敵方子彈與玩家的碰撞</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> &amp;enemyBulletPos : enemyBullets) {
         <span class="hljs-keyword">if</span> (enemyBulletPos.first == height - <span class="hljs-number">1</span> &amp;&amp; enemyBulletPos.second == playerX) {
-            gameOver = <span class="hljs-literal">true</span>;
+            gameOver = <span class="hljs-literal">true</span>; <span class="hljs-comment">// 如果敵方子彈擊中玩家，遊戲結束</span>
         }
     }
 
-    <span class="hljs-comment">// 隨機生成敵人子彈</span>
-    <span class="hljs-keyword">if</span> (rand() % <span class="hljs-number">10</span> &lt; level) { <span class="hljs-comment">// 隨機概率隨等級增加</span>
-        <span class="hljs-keyword">if</span> (!enemies.empty()) {
-            <span class="hljs-keyword">int</span> randomEnemy = rand() % enemies.size();
-            enemyBullets.push_back({enemies[randomEnemy].first + <span class="hljs-number">1</span>, enemies[randomEnemy].second});
+    <span class="hljs-comment">// 根據等級隨機生成敵方子彈</span>
+    <span class="hljs-keyword">if</span> (rand() % <span class="hljs-number">10</span> &lt; level) {
+        <span class="hljs-keyword">if</span> (!enemies.empty()) { <span class="hljs-comment">// 如果還有敵人</span>
+            <span class="hljs-keyword">int</span> randomEnemy = rand() % enemies.size(); <span class="hljs-comment">// 隨機選擇一個敵人</span>
+            enemyBullets.push_back({enemies[randomEnemy].first + <span class="hljs-number">1</span>, enemies[randomEnemy].second}); <span class="hljs-comment">// 從選擇的敵人位置發射子彈</span>
         }
     }
 
-    <span class="hljs-comment">// 如果所有敵人都被擊敗，則進入下一關</span>
+    <span class="hljs-comment">// 如果所有敵人都被消滅且遊戲未結束，進入下一級</span>
     <span class="hljs-keyword">if</span> (enemies.empty() &amp;&amp; !gameOver) {
-        nextLevel();
+        nextLevel(); <span class="hljs-comment">// 進入下一級</span>
     }
 }
 
+<span class="hljs-comment">// start()函數，用於開始遊戲</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Game::start</span><span class="hljs-params">()</span> </span>{
-    setup();
-    <span class="hljs-keyword">while</span> (!gameOver) {
-        draw();
-        input();
-        logic();
-        Sleep(<span class="hljs-number">100</span>); <span class="hljs-comment">// 調整FPS和遊戲速度</span>
+    setup(); <span class="hljs-comment">// 設置遊戲</span>
+    <span class="hljs-keyword">while</span> (!gameOver) { <span class="hljs-comment">// 當遊戲未結束</span>
+        draw(); <span class="hljs-comment">// 繪製遊戲界面</span>
+        input(); <span class="hljs-comment">// 處理玩家輸入</span>
+        logic(); <span class="hljs-comment">// 更新遊戲邏輯</span>
+        Sleep(<span class="hljs-number">100</span>); <span class="hljs-comment">// 遊戲速度控制</span>
     }
 
-    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Game Over! Your score is: "</span> &lt;&lt; score &lt;&lt; <span class="hljs-string">"  Level: "</span> &lt;&lt; level &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+    <span class="hljs-comment">// 遊戲結束，顯示分數和等級</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Game Over! Your score is: "</span> &lt;&lt; score &lt;&lt; <span class="hljs-string">"  Level: "</span> &lt;&lt; level &lt;&lt; <span class="hljs-built_in">endl</span>;
 
-    <span class="hljs-comment">// 恢復控制台游標可見</span>
+    <span class="hljs-comment">// 添加玩家分數到PlayerManager</span>
+    playerManager.addPlayerScore(playerManager.getCurrentPlayerID(), score);
+
+    <span class="hljs-comment">// 恢復控制台光標顯示</span>
     CONSOLE_CURSOR_INFO cursorInfo;
     GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursorInfo);
     cursorInfo.bVisible = <span class="hljs-literal">true</span>;
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cursorInfo);
-
-    playerManager.addPlayerScore(playerManager.getCurrentPlayerID(), score);
 }
+
 </div></code></pre>
 
 </body>
