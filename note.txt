@@ -1,10 +1,10 @@
 git add .
 git status
-git commit  -m "5/26 i hate c++ lib"
+git commit  -m " comment out"
+git push
+git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --after="2024-06-04"
 =======
 git config --global user.email "212410012@o365.tku.edu.tw"
 git config --global user.name "jimmyhua123"
-git push
-git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --after="2023-12-30"
 
-sass --watch demo/w16_portfolio_xx/scss:demo/w16_portfolio_xx/css
+

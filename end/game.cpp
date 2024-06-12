@@ -56,27 +56,20 @@ void Game::nextLevel() {
 // draw()函數，用於繪製遊戲界面
 void Game::draw() {
     ostringstream oss; // 創建字符串流對象
-
-    // 繪製頂部邊界
-    for (int i = 0; i < width + 2; i++) oss << border;
+    for (int i = 0; i < width + 2; i++) oss << border;     // 繪製頂部邊界
     oss << endl;
-
     // 繪製遊戲區域
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             if (j == 0) oss << border; // 繪製左邊邊界
-
             bool drawn = false; // 用於標記當前位置是否已繪製
-
             // 繪製敵人
             for (const auto &enemyPos : enemies) {
                 if (enemyPos.first == i && enemyPos.second == j) {
                     oss << enemy; // 如果當前位置有敵人，繪製敵人
                     drawn = true; // 標記已繪製
-                    break; // 跳出循環
-                }
-            }
-
+                    break; // 跳出循環 
+                    }}
             // 如果當前位置沒有敵人，繪製子彈
             if (!drawn) {
                 for (const auto &bulletPos : bullets) {
@@ -84,43 +77,31 @@ void Game::draw() {
                         oss << bullet; // 如果當前位置有子彈，繪製子彈
                         drawn = true; // 標記已繪製
                         break; // 跳出循環
-                    }
-                }
-            }
-
-            // 如果當前位置沒有敵人和子彈，繪製敵方子彈
-            if (!drawn) {
+                    }   }  }
+            if (!drawn) {// 如果當前位置沒有敵人和子彈，繪製敵方子彈
                 for (const auto &enemyBulletPos : enemyBullets) {
                     if (enemyBulletPos.first == i && enemyBulletPos.second == j) {
                         oss << enemyBullet; // 如果當前位置有敵方子彈，繪製敵方子彈
                         drawn = true; // 標記已繪製
                         break; // 跳出循環
-                    }
-                }
-            }
-
+                    }     }       }
             // 如果當前位置沒有敵人、子彈和敵方子彈，繪製玩家
             if (!drawn && i == height - 1 && j == playerX) {
                 oss << player; // 如果當前位置是玩家，繪製玩家
                 drawn = true; // 標記已繪製
             }
-
             // 如果當前位置什麼都沒有，繪製空格
             if (!drawn) oss << ' ';
-
             // 繪製右邊邊界
             if (j == width - 1) oss << border;
         }
         oss << endl; // 換行
     }
-
     // 繪製底部邊界
     for (int i = 0; i < width + 2; i++) oss << border;
     oss << endl;
-
     // 繪製分數和等級信息
     oss << "Score: " << score << "  Level: " << level << endl;
-
     // 將光標位置設置為(0, 0)，以便更新整個控制台內容
     COORD coord = {0, 0};
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
